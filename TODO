@@ -1,0 +1,4 @@
+- add proxy support
+- add tests using phpunit
+- follow PEAR guidelines
+- write a README
