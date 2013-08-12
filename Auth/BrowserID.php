@@ -31,20 +31,20 @@ class Auth_BrowserID
     /**
      * URL of the remote verifier
      */
-    protected $url;
+    protected $verifierUrl;
 
     /**
      * Constructor
      *
      * @param string $audience The scheme, hostname and port of the server
      * @param string $type The type of verification ('local' or 'remote')
-     * @param string $url The URL to use for remote verification
+     * @param string $verifierUrl The URL to use for remote verification
      */
-    public function __construct($audience, $type = 'remote', $url = 'https://verifier.login.persona.org/verify')
+    public function __construct($audience, $type = 'remote', $verifierUrl = 'https://verifier.login.persona.org/verify')
     {
         $this->audience = $audience;
         $this->type = $type;
-        $this->url = $url;
+        $this->verifierUrl = $verifierUrl;
     }
 
     /**
@@ -90,7 +90,7 @@ class Auth_BrowserID
         $postdata = 'assertion=' . urlencode($assertion) . '&audience=' . urlencode($this->audience);
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->url);
+        curl_setopt($ch, CURLOPT_URL, $this->verifierUrl);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
