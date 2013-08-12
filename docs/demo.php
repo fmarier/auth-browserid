@@ -7,7 +7,7 @@ require_once 'Auth/BrowserID.php';
 $body = $email = NULL;
 if (isset($_POST['assertion'])) {
     $verifier = new Auth_BrowserID('http://localhost:80');
-    $result = $verifier->verifyAssertion($_POST['assertion'], 'local');
+    $result = $verifier->verifyAssertion($_POST['assertion']);
 
     if ($result->status === 'okay') {
         $body = "<p>Logged in as: " . $result->email . "</p>";
